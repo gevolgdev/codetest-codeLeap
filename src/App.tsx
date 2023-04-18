@@ -1,9 +1,13 @@
-
+import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+import { GlobalStyle } from "./style/GlobalStyle";
 
 function App() {
-
   return (
-    <h1>Code Leap - Code test</h1>
+    <>
+      <Outlet/>
+      <GlobalStyle/>
+    </>
   )
 }
 
