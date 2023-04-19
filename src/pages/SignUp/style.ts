@@ -7,7 +7,7 @@ export const Container = styled.section`
   margin: 0 auto;
   display: flex;
   align-items: center; justify-content: center;
-  `
+`
 
 export const Content = styled.div`
   display: flex;
