@@ -1,20 +1,25 @@
 import { useState, ChangeEvent } from 'react'
 import { Container, Content, Title, Input, Button } from './style'
-
-interface UserProps {
-  name: string;
-  activeButton: boolean;
-}
+import { useDispatch, useSelector } from 'react-redux'
+import { userNameReducer } from '../../features/username/userNameSlice'
+import { UserProps } from '../../types/types';
+import { RootState } from '../../redux/RootState';
 
 const SignUp = () => {
 
   const INITIAL_STATE_USERNAME: UserProps = {name: '', activeButton: false}
   const [userName, setUserName] = useState<UserProps>(INITIAL_STATE_USERNAME)
+  const dispatch = useDispatch()
+  // const userNameSelect: string = useSelector((state: RootState) => state.userName.name);
 
   const handleSaveUserName = (event: ChangeEvent<HTMLInputElement>): void => {
     const { value } = event.target;
-    setUserName({name: value, activeButton: true})
+    setUserName((prev) => ({...prev, name: value}))
   };
+
+  const handleClickUserName = (): void => {
+    dispatch(userNameReducer(userName.name))
+  } 
 
   return (
     <Container>
@@ -30,9 +35,9 @@ const SignUp = () => {
           />
         </div>
         <Button
-          disabled={userName.activeButton}
-          onClick={() => console.log('Clicou!')}
-          activeButton={userName.activeButton}
+          disabled={!userName.name}
+          onClick={handleClickUserName}
+          activeButton={!!userName.name}
         >
           Enter
         </Button>
