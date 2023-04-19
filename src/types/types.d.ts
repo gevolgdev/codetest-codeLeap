@@ -15,3 +15,9 @@ export interface UserProps {
   name: string;
   activeButton: boolean;
 }
+
+export interface PostProps {
+  userName?: String,
+  title: string,
+  content: string,
+}
