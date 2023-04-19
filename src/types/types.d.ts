@@ -5,3 +5,13 @@ export interface DataProps {
   title: string,
   content: string,
 }
+
+export interface StateProps {
+  name: string;
+  activeButton: boolean;
+}
+
+export interface UserProps {
+  name: string;
+  activeButton: boolean;
+}
