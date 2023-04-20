@@ -2,31 +2,28 @@ import { useState, ChangeEvent } from 'react'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/RootState';
 import * as S from './style';
-import { Header } from '../../components';
+import { Header, UserPost } from '../../components';
 import { PostProps } from '../../types/types';
+import { useDispatch } from 'react-redux';
+import { addNewPostReducer } from '../../features/userPostSlice';
 
 const Feed = () => {
 
   const userName: String = useSelector((state: RootState) => state.userName.name);
+  const listUserPosts: PostProps[] = useSelector((state: RootState) => state.newPost);
+  const newListUserPosts: PostProps[] = listUserPosts.slice(1)
+  const dispatch = useDispatch();
 
-  const INITIAL_STATE_USERPOST: PostProps = {
-    userName: userName,
-    title: '',
-    content: '',
-  };
+  const INITIAL_STATE_USERPOST: PostProps = { userName: userName, title: '', content: '' };
   const [userPost, setUserPost] = useState<PostProps>(INITIAL_STATE_USERPOST);
-  const [listUserPost, setListUserPost] = useState<PostProps[]>([]);
-
-  console.log(`User posts -> ${userPost}`)
-  console.log(`List user posts -> ${listUserPost}`)
 
   const handleChangePost = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {id, value} = event.target;
-    setUserPost(prev => ({...prev, [id]: value}));
+    setUserPost(prev => ({...prev, [id]: value, userName: userName}));
   };
 
   const handleAddPosts = (): void => {
-    setListUserPost(prev => ([...prev, userPost]));
+    dispatch(addNewPostReducer(userPost))
     setUserPost(INITIAL_STATE_USERPOST)
   };
 
@@ -61,21 +58,17 @@ const Feed = () => {
           <S.Button onClick={handleAddPosts}>
             Create
           </S.Button>
-
         </S.PostForm>
 
-        {
-          listUserPost.map(item => (
-            <>
-              <span>@{item.userName}</span>
-              <span>Title:{item.title}</span>
-              <span>Content:{item.content}</span>
-            </>
-          )).reverse()
-        }
+        <S.PostsContainer>
+          {newListUserPosts.map(item => (
+              <UserPost {...item}/>
+            )).reverse()}
+        </S.PostsContainer>
+
       </S.FeedContainer>
     </>
   )
 }
 
-export default Feed
+export default Feed;

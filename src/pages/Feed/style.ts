@@ -16,6 +16,7 @@ export const PostForm = styled.div`
   border-radius: 16px;
   gap: 20px;
   padding: 30px;
+  margin-bottom: 50px;
 `
 
 export const Forms = styled.div`
@@ -65,4 +66,10 @@ export const Button = styled.button`
   border-radius: 5px;
   font-size: 1rem;
   padding: 7px 25px;
+`
+
+export const PostsContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `
