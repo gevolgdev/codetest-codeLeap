@@ -17,7 +17,8 @@ export interface UserProps {
 }
 
 export interface PostProps {
-  userName?: String,
-  title: string,
-  content: string,
+  userName?: String;
+  title: string;
+  content: string;
+  options?: boolean;
 }
