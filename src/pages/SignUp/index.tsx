@@ -2,7 +2,7 @@ import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Content, Title, Input, Button } from './style';
 import { useDispatch, useSelector } from 'react-redux';
-import { userNameReducer } from '../../features/userNameSlice';
+import { userNameReducer } from '../../redux/reducers/userNameSlice';
 import { UserProps } from '../../types/types';
 import { RootState } from '../../redux/RootState';
 
