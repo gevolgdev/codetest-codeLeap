@@ -19,6 +19,7 @@ export const UserPostHeader = styled.div`
   h2 {
     color: white;
     font-weight: 500;
+    overflow: auto;
   }
 
   .options {

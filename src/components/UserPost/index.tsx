@@ -22,14 +22,17 @@ const UserPost: React.FC<PostProps> = (props) => {
     <UserPostContainer>
       <UserPostHeader>
         <h2>{props.title}</h2>
-        <div className="options">
-          <button>
-            <MdDeleteForever/>
-          </button>
-          <button>
-            <BiEdit/>
-          </button>
-        </div>
+        
+        {props.options && (
+          <div className="options">
+            <button>
+              <MdDeleteForever/>
+            </button>
+            <button>
+              <BiEdit/>
+            </button>
+          </div>
+        )}
       </UserPostHeader>
 
       <UserPostContent>
